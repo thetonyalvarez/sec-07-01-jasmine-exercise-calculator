@@ -1,8 +1,11 @@
-beforeAll(() => {
-  result1 = calculateMonthlyPayment(values(10000, 4, 7.25))
-  result2 = calculateMonthlyPayment(values(7000, 5, 8))
-});
+values = (amount, years, rate) => {
+  return {
+    amount, years, rate
+  }
+}
 
+result1 = calculateMonthlyPayment(values(10000, 4, 7.25))
+result2 = calculateMonthlyPayment(values(7000, 5, 8))
 
 it('should calculate the monthly rate correctly', () => {
   expect(result1).toEqual('240.62')
@@ -29,8 +32,3 @@ it('should reject invalid characters', () => {
   expect(() => getCurrentUIValues(10000, 4, 'hi')).toThrowError()
   expect(() => getCurrentUIValues(10000, 4, '7.25')).toThrowError()
 })
-
-afterEach(() => {
-  result1 = ''
-  result2 = ''
-});
